@@ -1,0 +1,27 @@
+ 1. Bắt đầu với Express Framework
+- cài đặt thư viện:
++ body-parser: dùng để viết api hoặc lấy các tham số truyền từ client lên server
++ dotenv: dùng để lấy các tham số trong file môi trường 	
++ ejs: dùng để quán lý View trong NodeJS
++ babel: dùng để biên dịch ECMAScript thành phiên bản tương thích ngược cho JavaScript có thể chạy trên các môi trường JavaScript cũ hơn
++ nodemon: dùng để tự động khởi động lại ứng dụng NodeJs
+
+- cấu trúc của project:
++ server.js: có thể hiểu là main dùng để chạy cả server của chúng ta!
++ service: dùng để chọc đến Database 
++ config: dùng để cấu hình các tham số của dự án 
++ view: dùng để viết các file HTML
++ public: là nơi công khai để chúng ta lưu trữ hình ảnh và file CSS
++ controller
++ route: nơi khai báo các đường link trên server 
+
+-Tham số môi trường:
++ .env: dùng để cấu hình các tham số môi trường
++ .gitignore: dùng để quy định những cái đẩy lên server	hay public ra ngoài 
++ babelrc: dùng để cấu hình cho thư viện Babel.
+
+
+
+2.Áp Dụng Mô Hình MVC vào Dự Án Node.JS
+ 
+SERVER.JS CALL initWebRoutes  =>  WEB.JS(initWebRoutes) => .(HOMECONTROLLER.JS)(....) => FILE(VIEWS)(.....) 
