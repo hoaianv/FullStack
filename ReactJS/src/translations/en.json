@@ -1,9 +1,28 @@
 {
-    "homeheader":{
-        "speciality":"Medical specialty",
-        "searchdoctor":"Find a doctor by specialty"
+    "homeheader": {
+        "speciality": "Medical specialty",
+        "searchdoctor": "Find a doctor by specialty",
+        "health-facility": "Health facilities",
+        "select-room": "Choose hospital clinic",
+        "doctor": "Doctor",
+        "select-doctor": "Choose a good doctor",
+        "fee": "Fee",
+        "check-health": "General health check",
+        "support": "Support"
+    },
+    "banner":{
+        "healthcare-platform":"Healthcare platform",
+        "holistic-healthcare":"Holistic healthcare",
+        "find-a-specialist":"search for a medical specialty for diagnosis",
+        "specialist-examination":"Specialist examination",
+"remote-examination":"Virtual consultation",
+"General-examination":"General physical examination ",
+"medical-test":"Medical testing",
+"dental-examination":"Dental examination",
+"surgery-package":"Surgical pack",
+"medical-products":"Medical products",
+"business-health":"Business health"
         },
-
     "common": {
         "add": "Add",
         "edit": "Edit",

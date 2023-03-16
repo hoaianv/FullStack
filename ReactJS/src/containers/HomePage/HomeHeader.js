@@ -22,39 +22,42 @@ class HomeHeader extends Component {
               </div>
               <div className="child-content">
                 <div>
-                  <b>Cơ sở y tế</b>
+                  <b> <FormattedMessage id={"homeheader.health-facility"}/>  </b>
                 </div>
-                <div className="subs-title">Chọn bệnh viện phòng khám</div>
+                <div className="subs-title"><FormattedMessage id={"homeheader.select-room"}/> </div>
               </div>
               <div className="child-content">
                 <div>
-                  <b>Bác sĩ</b>
+                  <b><FormattedMessage id={"homeheader.doctor"}/> </b>
                 </div>
-                <div className="subs-title">Tìm bác sĩ giỏi</div>
+                <div className="subs-title"><FormattedMessage id={"homeheader.select-doctor"}/> </div>
               </div>
               <div className="child-content">
                 <div>
-                  <b>Gói khám</b>
+                  <b><FormattedMessage id={"homeheader.fee"}/> </b>
                 </div>
-                <div className="subs-title">Khám sức khỏe tổng quát</div>
+                <div className="subs-title"><FormattedMessage id={"homeheader.check-health"}/> </div>
               </div>
             </div>
             <div className="right-content">
               <div className="support">
                 <i class="fas fa-question-circle"></i>
               </div>
-              <div className="flag">Hỗ trợ</div>
+              <div className="flag"><FormattedMessage id={"homeheader.support"}/> </div>
             </div>
           </div>
         </div>
         <div className="home-header-banner">
           <div className="content-up">
-            <div className="title1">Nền tảng y tế</div>
-            <div className="title2">Chăm sóc sức khỏe toàn diện</div>
+            <div className="title1"><FormattedMessage id={"banner.healthcare-platform"}/> </div>
+            <div className="title2"><FormattedMessage id={"banner.holistic-healthcare"}/></div>
+            
 
             <div className="search">
               <i class="fas fa-search"></i>
-              <input type="text" placeholder="Tìm chuyên khoa khám bệnh" />
+              <input type="text" placeholder= "Tìm chuyên khoa khám bệnh"
+               />
+            {console.log("check banner find :", <FormattedMessage id={"banner.find-a-specialist"}/>)}
             </div>
           </div>
 
@@ -64,49 +67,49 @@ class HomeHeader extends Component {
                 <div className="icon-child">
                   <i class="fas fa-hospital-alt"></i>
                 </div>
-                <div className="text-child"> Khám chuyên khoa</div>
+                <div className="text-child"> <FormattedMessage id={"banner.specialist-examination"}/></div>
               </div>
               <div className="options-child">
                 <div className="icon-child">
                   <i class="fas fa-mobile-alt"></i>
                 </div>
-                <div className="text-child"> Khám từ xa</div>
+                <div className="text-child"> <FormattedMessage id={"banner.remote-examination"}/></div>
               </div>
               <div className="options-child">
                 <div className="icon-child">
                   <i class="fas fa-briefcase-medical"></i>
                 </div>
-                <div className="text-child"> Khám tổng quát</div>
+                <div className="text-child"> <FormattedMessage id={"banner.General-examination"}/></div>
               </div>
               <div className="options-child">
                 <div className="icon-child">
                   <i class="fas fa-user-md"></i>
                 </div>
-                <div className="text-child">Xét nghiệm y học</div>
+                <div className="text-child"><FormattedMessage id={"banner.medical-test"}/></div>
               </div>
               <div className="options-child">
                 <div className="icon-child">
                   <i class="fas fa-paint-brush"></i>
                 </div>
-                <div className="text-child">Khám nha khoa</div>
+                <div className="text-child"><FormattedMessage id={"banner.dental-examination"}/></div>
               </div>
               <div className="options-child">
                 <div className="icon-child">
                   <i class="far fa-calendar-plus"></i>
                 </div>
-                <div className="text-child">Gói phẫu thuật</div>
+                <div className="text-child"><FormattedMessage id={"banner.surgery-package"}/></div>
               </div>
               <div className="options-child">
                 <div className="icon-child">
                   <i class="fab fa-product-hunt"></i>
                 </div>
-                <div className="text-child">Sản phẩm y tế</div>
+                <div className="text-child"><FormattedMessage id={"banner.medical-products"}/></div>
               </div>
               <div className="options-child">
                 <div className="icon-child">
                   <i class="fas fa-procedures"></i>
                 </div>
-                <div className="text-child">Sức khỏe doanh nghiệp</div>
+                <div className="text-child"><FormattedMessage id={"banner.business-health"}/></div>
               </div>
             </div>
           </div>
