@@ -206,6 +206,27 @@ let EditUser = (data) => {
     }
   })
 }
+let getAllCodeService = (typeInput) =>{
+  return new Promise (async (resolve,reject)=>{
+    try {
+      let res ={}
+      if(!typeInput){
+res.errCode = 1,
+res.errMessage = 'Missing required parameters'
+      }else{
+        console.log("check type",typeInput)
+        let allcode = await db.allcode.findAll({
+          where: {type: typeInput}
+        })
+        res.errCode = 0,
+        res.data = allcode
+      }
+      resolve(res)
+    } catch (error) {
+      reject(error)
+    }
+  })
+}
 
 module.exports = {
   handleUserLogin: handleUserLogin,
@@ -213,4 +234,5 @@ module.exports = {
   CreateNewUser: CreateNewUser,
   DeleteUser: DeleteUser,
   EditUser: EditUser,
+  getAllCodeService:getAllCodeService,
 }

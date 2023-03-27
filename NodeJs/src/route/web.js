@@ -18,6 +18,9 @@ let initWebRoutes = (app) => {
   router.post('/api/create-new-user', userController.HandleCreateNewUser)
   router.delete('/api/delele-user', userController.HandleDeleteUser)
   router.put('/api/edit-user', userController.HandleEditUser)
+
+  router.get('/api/allcode',userController.getAllCode)
+
   return app.use('/', router)
 }
 
