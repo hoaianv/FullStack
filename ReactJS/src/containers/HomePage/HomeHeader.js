@@ -8,10 +8,10 @@ import {changeLanguageApp} from '../../store/actions'
 class HomeHeader extends Component {
   changeLanguage  = (language)=> {
   this.props.ChangeLanguageAppRedux(language)
-
-
   }
   render() {
+    const { language} = this.props
+
     return (
       <React.Fragment>
         <div className="home-header-container">
@@ -48,11 +48,11 @@ class HomeHeader extends Component {
             </div>
             <div className="right-content">
               <div className="support">
-                <i class="fas fa-question-circle"></i>
+                <i className="fas fa-question-circle"></i>
               </div>
               <div className="text"><FormattedMessage id={"homeheader.support"} /> </div>
-              <div><span className='flag' onClick={()=> this.changeLanguage(LANGUAGES.EN)} >EN</span></div>
-              <div><span className='flag' onClick={()=> this.changeLanguage(LANGUAGES.VI)} >VI</span>
+              <div><span className= {language === LANGUAGES.EN? 'flag-vn active' : 'flag-vn'} onClick={()=> this.changeLanguage(LANGUAGES.EN)} >EN</span></div>
+              <div><span className={language === LANGUAGES.VI ? 'flag-vi active' : 'flag-vi'}  onClick={()=> this.changeLanguage(LANGUAGES.VI)} >VI</span>
               </div>
 
             </div>
@@ -65,7 +65,7 @@ class HomeHeader extends Component {
 
 
             <div className="search">
-              <i class="fas fa-search"></i>
+              <i className="fas fa-search"></i>
               <input type="text" placeholder="Tìm chuyên khoa khám bệnh"
               />
               {console.log("check banner find :", <FormattedMessage id={"banner.find-a-specialist"} />)}
@@ -76,49 +76,49 @@ class HomeHeader extends Component {
             <div className="options">
               <div className="options-child">
                 <div className="icon-child">
-                  <i class="fas fa-hospital-alt"></i>
+                  <i className="fas fa-hospital-alt"></i>
                 </div>
                 <div className="text-child"> <FormattedMessage id={"banner.specialist-examination"} /></div>
               </div>
               <div className="options-child">
                 <div className="icon-child">
-                  <i class="fas fa-mobile-alt"></i>
+                  <i className="fas fa-mobile-alt"></i>
                 </div>
                 <div className="text-child"> <FormattedMessage id={"banner.remote-examination"} /></div>
               </div>
               <div className="options-child">
                 <div className="icon-child">
-                  <i class="fas fa-briefcase-medical"></i>
+                  <i className="fas fa-briefcase-medical"></i>
                 </div>
                 <div className="text-child"> <FormattedMessage id={"banner.General-examination"} /></div>
               </div>
               <div className="options-child">
                 <div className="icon-child">
-                  <i class="fas fa-user-md"></i>
+                  <i className="fas fa-user-md"></i>
                 </div>
                 <div className="text-child"><FormattedMessage id={"banner.medical-test"} /></div>
               </div>
               <div className="options-child">
                 <div className="icon-child">
-                  <i class="fas fa-paint-brush"></i>
+                  <i className="fas fa-paint-brush"></i>
                 </div>
                 <div className="text-child"><FormattedMessage id={"banner.dental-examination"} /></div>
               </div>
               <div className="options-child">
                 <div className="icon-child">
-                  <i class="far fa-calendar-plus"></i>
+                  <i className="far fa-calendar-plus"></i>
                 </div>
                 <div className="text-child"><FormattedMessage id={"banner.surgery-package"} /></div>
               </div>
               <div className="options-child">
                 <div className="icon-child">
-                  <i class="fab fa-product-hunt"></i>
+                  <i className="fab fa-product-hunt"></i>
                 </div>
                 <div className="text-child"><FormattedMessage id={"banner.medical-products"} /></div>
               </div>
               <div className="options-child">
                 <div className="icon-child">
-                  <i class="fas fa-procedures"></i>
+                  <i className="fas fa-procedures"></i>
                 </div>
                 <div className="text-child"><FormattedMessage id={"banner.business-health"} /></div>
               </div>
@@ -131,11 +131,11 @@ class HomeHeader extends Component {
 }
 
 const mapStateToProps = (state) => {
-  console.log("check state in mapstatetoprop",state)
 
   return {
     isLoggedIn: state.user.isLoggedIn,
-    language: state.app.language
+    language: state.app.language,
+    userInfo:state.user.userInfo
   }
 }
 

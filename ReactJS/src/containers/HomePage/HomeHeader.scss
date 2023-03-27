@@ -72,14 +72,33 @@
                 cursor: pointer;
             }
 
-            .flag {
-                margin: 0 2px;
-                color: #45c3d2;
-                font-size: 15px;
-                font-weight: 900;
+               
                 cursor: pointer;
+                .flag-vi{
+                    margin: 0 2px;
+                    color: #45c3d2;
+                    font-size: 15px;
+                    font-weight: 400;
+                    &.active{
+                        color: black;
+                        font-weight: 900;
 
-            }
+                    }
+                }
+                .flag-vn{
+                    margin: 0 2px;
+                    color: #45c3d2;
+                    font-size: 15px;
+                    font-weight: 400;
+                    &.active{
+                        color: black;
+                        font-weight: 900;
+
+
+                    }
+                }
+
+            
         }
     }
 }

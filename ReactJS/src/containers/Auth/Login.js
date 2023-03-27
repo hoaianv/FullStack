@@ -7,7 +7,6 @@ import { handleLoginAPI } from '../../services/userService'
 
 import './Login.scss'
 import { FormattedMessage } from 'react-intl'
-import { userLoginFail, userLoginSuccess } from '../../store/actions'
 
 class Login extends Component {
   constructor(props) {
@@ -48,7 +47,7 @@ class Login extends Component {
         })
       }
       if (data && data.userData.errcode === 0) {
-        this.props.userLoginSuccess(data.user)
+   this.props.userLoginSuccess(data.userData.user)
       }
     } catch (error) {
       if (error.response) {
@@ -138,8 +137,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     navigate: (path) => dispatch(push(path)),
-    userLoginSuccess: (userInfor) =>
-      dispatch(actions.userLoginSuccess(userInfor)),
+    userLoginSuccess: (userInfo) =>
+      dispatch(actions.userLoginSuccess(userInfo)),
   }
 }
 

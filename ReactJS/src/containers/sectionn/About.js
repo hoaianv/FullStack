@@ -18,7 +18,7 @@ class HandBook extends Component {
                         src="https://www.youtube.com/embed/JZjAg6fK-BQ?list=RDJZjAg6fK-BQ"
                         title="The Weeknd - Reminder (Official Video)"
                         frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                        allowfullscreen></iframe>
+                        allowFullScreen></iframe>
                     </div>
                     <div className='content-right'>
 <p>Abel Makkonen Tesfaye là nam ca sĩ, nhạc sĩ, nhà sản xuất thu âm người Canada. 
