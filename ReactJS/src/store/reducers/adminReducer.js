@@ -2,34 +2,74 @@ import { connect } from 'react-redux'
 import actionTypes from '../actions/actionTypes'
 
 const initialState = {
-  gender :[],
-   roles:[],
-   position:[]
+  gender: [],
+  roles: [],
+  position: [],
+  isLoadingGender: false
 }
 
 const adminReducer = (state = initialState, action) => {
   switch (action.type) {
+    // GENDER
     case actionTypes.FETCH_GENDER_START:
-        console.log("Draco Vuong fire fetch gender start",action)
+      state.isLoadingGender = true
       return {
         ...state,
- 
-      }
-      case actionTypes.FETCH_GENDER_SUCCESS:
-        console.log("Draco Vuong fire fetch gender success",action)
-        let copyState = {...state}
-        copyState.gender = action.data
-        return {
-          ...copyState,
-   
-        }
-        case actionTypes.FETCH_GENDER_FAILED:
-            console.log("Draco Vuong fire fetch gender failed",action)
 
-            return {
-              ...state,
-       
-            }
+      }
+    case actionTypes.FETCH_GENDER_SUCCESS:
+      state.isLoadingGender = false
+      state.gender = action.data
+      return {
+        ...state,
+
+      }
+    case actionTypes.FETCH_GENDER_FAILED:
+      state.isLoadingGender = false
+
+      return {
+        ...state,
+
+      }
+
+      // POSITION
+    case actionTypes.FETCH_POSITION_START:
+      return {
+        ...state,
+
+      }
+    case actionTypes.FETCH_POSITION_SUCCESS:
+      state.position = action.data
+      return {
+        ...state,
+
+      }
+    case actionTypes.FETCH_POSITION_FAILED:
+      state.position = []
+
+      return {
+        ...state,
+
+      }
+      // ROLE
+      case actionTypes.FETCH_ROLE_START:
+        return {
+          ...state,
+  
+        }
+      case actionTypes.FETCH_ROLE_SUCCESS:
+        state.roles = action.data
+        return {
+          ...state,
+  
+        }
+      case actionTypes.FETCH_ROLE_FAILED:
+        state.roles = []
+  
+        return {
+          ...state,
+  
+        }
     default:
       return state
   }
