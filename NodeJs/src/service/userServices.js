@@ -214,8 +214,7 @@ let getAllCodeService = (typeInput) =>{
 res.errCode = 1,
 res.errMessage = 'Missing required parameters'
       }else{
-        console.log("check type",typeInput)
-        let allcode = await db.allcode.findAll({
+         let allcode = await db.allcode.findAll({
           where: {type: typeInput}
         })
         res.errCode = 0,
