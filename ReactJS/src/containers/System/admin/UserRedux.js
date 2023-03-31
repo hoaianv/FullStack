@@ -90,13 +90,77 @@ class UserRedux extends Component {
   }
 
   onChangeInput = (event,id)=>{
+
     let copyState = {...this.state}
     copyState[id]= event.target.value
     this.setState({
       ...copyState
-    },()=>{
-      console.log("check copyState",this.state)
-    })
+    } )
+  }
+
+  // checkValidateInput = () =>{
+  //   let isValid = true
+    
+  //   let checkArr = ['Email','PassWord','FirstName','LastName','NumberPhone','Address']
+  //   for(let i = 0; i <checkArr.length;i++){
+  //     if(!this.state[checkArr[i]]){
+  //       isValid = false
+  //       alert("This input is required  "+ checkArr[i])
+  //       break
+  //     }
+ 
+  //   }
+  //   return isValid
+
+  // }
+
+    checkValidateInput = () =>{
+    let isValid = true
+    
+    let checkNumber = /^[0-9\b]+$/  
+    let checkPassword = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@#$%^&+=]).{8,}$/
+    let checkEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
+    let checkArr = ['Email','PassWord','FirstName','LastName','NumberPhone','Address']
+    for(let i = 0; i <checkArr.length;i++){
+      if(!this.state[checkArr[i]]){
+        isValid = false
+        alert("This input is required  "+ checkArr[i])
+        break
+      }else{ 
+        if(i===0){
+          if(!checkEmail.test(this.state[checkArr[i]])){
+            alert("You are writing invalid email address!")
+            isValid = false
+            break
+          }
+        }
+
+        if(i===1){ 
+          if(!checkPassword.test(this.state[checkArr[i]])){
+            alert("Password must be at least one uppercase, one lowercase, one special character and one number." )
+            isValid = false
+            break
+          }
+        }
+        if(i===4){
+          if(!checkNumber.test(this.state[checkArr[i]])){
+            alert("This input is number ")
+            isValid = false
+            break
+          }
+        }
+
+         
+      }
+ 
+    }
+    return isValid
+
+  }
+
+  HandleSaveUser = ()=>{
+    this.checkValidateInput()
+    console.log("Draco before submit check state",this.state)
   }
 
   render() {
@@ -228,7 +292,7 @@ class UserRedux extends Component {
 
             </div>
             <div className='col-12'>
-              <button type="submit" className="btn btn-primary"><FormattedMessage id={'manage-user.save'} /></button>
+              <button type="submit" className="btn btn-primary" onClick={() => this.HandleSaveUser()}><FormattedMessage id={'manage-user.save'} /></button>
             </div>
           </div>
         </div>
