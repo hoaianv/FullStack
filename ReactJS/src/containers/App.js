@@ -67,9 +67,10 @@ class App extends Component {
 
             <ToastContainer
               className="toast-container"
+              position='top-right'
               toastClassName="toast-item"
               bodyClassName="toast-item-body"
-              autoClose={false}
+              autoClose={5000}
               hideProgressBar={true}
               pauseOnHover={false}
               pauseOnFocusLoss={true}

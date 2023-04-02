@@ -5,7 +5,7 @@ import { FormattedMessage } from 'react-intl'
 import { connect } from 'react-redux'
 import { LANGUAGES } from '../../../utils/constant'
 import * as actions from '../../../store/actions'
-
+import TableManageUser from './TableManageUser';
 import './UserRedux.scss'
 class UserRedux extends Component {
   constructor(props) {
@@ -70,6 +70,21 @@ class UserRedux extends Component {
         Role:arrRole &&  arrRole.length>0 ? arrRole[0].key :''
       })
     }
+    if (prevProps.ListUserRedux !== this.props.ListUserRedux) {
+      this.setState({
+
+        Email: '',
+        PassWord: '',
+        FirstName: '',
+        LastName: '',
+        NumberPhone: '',
+        Address: '',
+        Gender: '',
+        Position: '',
+        Role: '',
+        Avatar: ''
+            })
+  }
   }
   HandleOnChangeImg = (event) => {
     let data = event.target.files
@@ -158,9 +173,25 @@ class UserRedux extends Component {
 
   }
 
-  HandleSaveUser = ()=>{
-    this.checkValidateInput()
-    console.log("Draco before submit check state",this.state)
+  HandleSaveUser = ()=> {
+    let Isvalid =   this.checkValidateInput()
+
+     if(Isvalid === false) return
+
+     this.props.createNewUser({
+      email: this.state.Email,
+      password: this.state.PassWord,
+      firstName: this.state.FirstName,
+      lastName: this.state.LastName,
+      address: this.state.Address,
+      numberphone: this.state.NumberPhone,
+      gender: this.state.Gender ,
+      roleId: this.state.Role,
+      positionId: this.state.Position,
+
+
+     })
+ 
   }
 
   render() {
@@ -207,7 +238,7 @@ class UserRedux extends Component {
             </div>
             <div className='col-3'>
               <label><FormattedMessage id={'manage-user.password'} /></label>
-              <input className='form-control' type='input' value={PassWord} onChange={(event) => { this.onChangeInput(event, 'PassWord') }}></input>
+              <input className='form-control' type='password' value={PassWord} onChange={(event) => { this.onChangeInput(event, 'PassWord') }}></input>
             </div>
             <div className='col-3'>
               <label><FormattedMessage id={'manage-user.first-name'} /></label>
@@ -294,6 +325,10 @@ class UserRedux extends Component {
             <div className='col-12'>
               <button type="submit" className="btn btn-primary" onClick={() => this.HandleSaveUser()}><FormattedMessage id={'manage-user.save'} /></button>
             </div>
+            <div className='col-12'> 
+             <TableManageUser/>
+
+            </div>
           </div>
         </div>
       </div>
@@ -318,7 +353,9 @@ const mapStateToProps = (state) => {
     genderRedux: state.admin.gender,
     positionRedux: state.admin.position,
     isLoadingGender: state.admin.isLoadingGender,
-    roleRedux: state.admin.roles
+    roleRedux: state.admin.roles,
+    ListUserRedux: state.admin.users
+
   }
 }
 
@@ -326,7 +363,10 @@ const mapDispatchToProps = (dispatch) => {
   return {
     getGenderStart: () => dispatch(actions.FetchGenderStart()),
     getPostionStart: () => dispatch(actions.FetchPositionStart()),
-    getRoleStart: () => dispatch(actions.FetchRoleStart())
+    getRoleStart: () => dispatch(actions.FetchRoleStart()),
+    createNewUser: (data) => dispatch(actions.CreateUserStart(data)),
+    getAllUserStart: () => dispatch(actions.FetchAllUserStart())
+
   }
 }
 
