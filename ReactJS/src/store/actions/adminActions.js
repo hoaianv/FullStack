@@ -1,5 +1,5 @@
 import actionTypes from './actionTypes'
-import { getAllCodeService, CreateNewUserService, getAllUsers,DeleteUserService } from '../../services/userService'
+import { getAllCodeService, CreateNewUserService, getAllUsers,DeleteUserService,EditUserService,getAllDoctorService } from '../../services/userService'
 import { toast } from 'react-toastify'
 // export const FetchGenderStart = () => ({
 //   type: actionTypes.FETCH_GENDER_START,
@@ -69,6 +69,8 @@ export const FetchRoleStart = () => {
     return async (dispatch, getState) => {
         try {
             let res = await getAllCodeService("ROLE")
+            let resDoctor = await getAllDoctorService('')
+            console.log("check get doctor",resDoctor)
             if (res && res.errCode === 0) {
 
                 dispatch(FetchRoleSuccess(res.data))
@@ -183,3 +185,32 @@ export const DeleteUserSuccess = () => ({
 export const DeleteUserFailed = () => ({
     type: actionTypes.DELETE_USER_FAILED,
 })
+
+export const EditUserStart = (user) => {
+    return async (dispatch, getState) => {
+        try {
+            let res = await EditUserService(user)
+            console.log("check res edit user start",res)
+            if (res && res.errCode === 0) {
+                toast.success("Edit user success")
+
+                dispatch(EditUserSuccess())
+                dispatch(FetchAllUserStart())
+            } else {
+                toast.warn("Edit user failed")
+                dispatch(EditUserFailed())
+            }
+        } catch (e) {
+            dispatch(FetchAllUserFailed())
+            console.log(e)
+        }
+
+    }
+}
+export const EditUserSuccess = () => ({
+    type: actionTypes.EDIT_USER_SUCCESS,
+})
+export const EditUserFailed = () => ({
+    type: actionTypes.EDIT_USER_FAILED,
+})
+

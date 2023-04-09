@@ -23,9 +23,11 @@ class TableManageUser extends Component {
         }
     }
     HandleDeleteUser = (UserId) =>{
-this.props.deleteUserStart(UserId)
+ this.props.deleteUserStart(UserId)
     }
-
+    HandleEditUser = (User) => {
+        this.props.HandleEditUserParent(User)
+    }
     render() {
         let  listUser  = this.state.listUser
          console.log("check listUser state",listUser)
@@ -55,6 +57,7 @@ this.props.deleteUserStart(UserId)
                                         <td>
                                             <button
                                                 className="btn-edit"
+                                                onClick={()=> this.HandleEditUser(item)}
                                             >
                                                 <i className="fas fa-edit"></i>
                                             </button>
