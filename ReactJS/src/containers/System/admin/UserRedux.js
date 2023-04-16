@@ -344,7 +344,7 @@ class UserRedux extends Component {
               >
                 {gender && gender.length > 0 && gender.map((item, index) => {
                   return (
-                    <option key={index} value={item.key}>{Language === LANGUAGES.VI ? item.valueVi : item.valueVn}</option>
+                    <option key={index} value={item.keyMap}>{Language === LANGUAGES.VI ? item.valueVi : item.valueVn}</option>
                   )
                 })
 
@@ -360,7 +360,7 @@ class UserRedux extends Component {
               >
                 {position && position.length > 0 && position.map((item, index) => {
                   return (
-                    <option key={index} value={item.key}>{Language === LANGUAGES.VI ? item.valueVi : item.valueVn}</option>
+                    <option key={index} value={item.keyMap}>{Language === LANGUAGES.VI ? item.valueVi : item.valueVn}</option>
                   )
                 })}
 
@@ -376,7 +376,7 @@ class UserRedux extends Component {
               >
                 {role && role.length > 0 && role.map((item, index) => {
                   return (
-                    <option key={index} value={item.key}>{Language === LANGUAGES.VI ? item.valueVi : item.valueVn}</option>
+                    <option key={index} value={item.keyMap}>{Language === LANGUAGES.VI ? item.valueVi : item.valueVn}</option>
                   )
                 })}
               </select>

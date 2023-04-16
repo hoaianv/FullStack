@@ -1,5 +1,5 @@
 import actionTypes from './actionTypes'
-import { getAllCodeService, CreateNewUserService, getAllUsers,DeleteUserService,EditUserService,getAllDoctorService } from '../../services/userService'
+import { getAllCodeService, CreateNewUserService, getAllUsers, DeleteUserService, EditUserService, getAllDoctorService } from '../../services/userService'
 import { toast } from 'react-toastify'
 // export const FetchGenderStart = () => ({
 //   type: actionTypes.FETCH_GENDER_START,
@@ -69,8 +69,7 @@ export const FetchRoleStart = () => {
     return async (dispatch, getState) => {
         try {
             let res = await getAllCodeService("ROLE")
-            let resDoctor = await getAllDoctorService('')
-            console.log("check get doctor",resDoctor)
+
             if (res && res.errCode === 0) {
 
                 dispatch(FetchRoleSuccess(res.data))
@@ -190,7 +189,7 @@ export const EditUserStart = (user) => {
     return async (dispatch, getState) => {
         try {
             let res = await EditUserService(user)
-            console.log("check res edit user start",res)
+            console.log("check res edit user start", res)
             if (res && res.errCode === 0) {
                 toast.success("Edit user success")
 
@@ -212,5 +211,34 @@ export const EditUserSuccess = () => ({
 })
 export const EditUserFailed = () => ({
     type: actionTypes.EDIT_USER_FAILED,
+})
+
+export const FetchTopDocTorStart = () => {
+    return async (dispatch, getState) => {
+        try {
+            let res = await getAllDoctorService('')
+            console.log("check doctor", res)
+            if (res && res.errCode === 0) {
+                dispatch(FetchTopDocTorSucces(res))
+            } else {
+                dispatch(FetchTopDocTorFailed())
+            }
+        } catch (error) {
+            console.log(error)
+            dispatch(FetchTopDocTorFailed())
+
+        }
+    }
+}
+
+export const FetchTopDocTorSucces = (data) => ({
+    type: actionTypes.FETCH_TOP_DOCTOR_SUCCESS,
+    data: data
+
+})
+
+export const FetchTopDocTorFailed = () => ({
+    type: actionTypes.FETCH_TOP_DOCTOR_FAILED,
+
 })
 

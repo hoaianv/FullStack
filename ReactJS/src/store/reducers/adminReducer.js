@@ -1,4 +1,5 @@
 import { connect } from 'react-redux'
+import { RECEIVE_INIT_STATE } from 'redux-state-sync'
 import actionTypes from '../actions/actionTypes'
 
 const initialState = {
@@ -6,7 +7,8 @@ const initialState = {
   roles: [],
   position: [],
   isLoadingGender: false,
-  users: []
+  users: [],
+  TopDoctors:[]
 }
 
 const adminReducer = (state = initialState, action) => {
@@ -71,6 +73,7 @@ const adminReducer = (state = initialState, action) => {
         ...state,
 
       }
+      //user
     case actionTypes.FETCH_ALL_USERS_START:
 
       return {
@@ -92,9 +95,31 @@ const adminReducer = (state = initialState, action) => {
         ...state,
 
       }
+
+      //Doctors
+      case actionTypes.FETCH_TOP_DOCTOR_START:
+
+      return {
+        ...state,
+    
+      }
+
+      case actionTypes.FETCH_TOP_DOCTOR_SUCCESS: 
+      state.TopDoctors = action.data
+      return {
+        ...state,
+      }
+
+      case actionTypes.FETCH_TOP_DOCTOR_FAILED:
+      state.TopDoctors = []
+      return {
+        ...state,
+      }
+
     default:
       return state
   }
+ 
 }
 
 
