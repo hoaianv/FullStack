@@ -11,7 +11,13 @@ import db from '../models/index'
                 },
                 attributes:{
                     exclude:['password','image']
-                }
+                },
+                include:[
+                    {model:db.allcode,as:'positionData', attributes:['valueVn','valueVi']},
+                    {model:db.allcode,as:'genderData', attributes:['valueVn','valueVi']}
+                ],
+                raw: true,
+                nest:true
             })
             resolve({
                 errCode:0,
