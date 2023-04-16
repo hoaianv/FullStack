@@ -5,12 +5,13 @@ import db from '../models/index'
         try {
             let users = await db.User.findAll({
                 limit: limitInput,
-                order:[['createdAt','DESC']],
                 where: {
                     roleId: "R2"
                 },
+                order:[['createdAt','DESC']],
+
                 attributes:{
-                    exclude:['password','image']
+                    exclude:['password']
                 },
                 include:[
                     {model:db.allcode,as:'positionData', attributes:['valueVn','valueVi']},
