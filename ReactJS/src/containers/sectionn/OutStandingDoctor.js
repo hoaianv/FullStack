@@ -3,6 +3,7 @@ import { Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
 import Slider from "react-slick";
 import * as actions from '../../store/actions'
+import {LANGUAGES} from '../../utils/constant'
 
 class OutStandingDoctor extends Component {
     constructor(props) {
@@ -24,6 +25,8 @@ class OutStandingDoctor extends Component {
     }
     render() {
         let arrDoctors = this.state.arrDoctor
+        let language = this.props.lang
+
          return (
             <div className='section-share section-outstanding-doctor '>
                 <div className='section-container'>
@@ -33,17 +36,30 @@ class OutStandingDoctor extends Component {
                             Xem thêm
                         </button>
                     </div>
-                    <div className='section-body'>
+                    <div className='section-body'> 
                         <Slider {...this.props.settings}>
                             {arrDoctors.data && arrDoctors.data.length > 0 && arrDoctors.data.map((item, index) => {
+                                let imageBase64 = ''
+                                if(item.image){
+                                 imageBase64 = new Buffer(item.image,"base64").toString("binary")
+                                }
+                             
+
+                                let nameVi = `${item.positionData.valueVi},${item.lastName} ${item.firstName}`
+                                let nameEn = `${item.positionData.valueVn},${item.lastName} ${item.firstName}`
+                                 console.log("check name Vi",nameVi)
+                                 console.log("check name En",nameEn)
+
                                 return (
                                     <div className='section-customize' key={index}>
                                         <div className='customize-boder'>
                                             <div className='outer-bg'>
-                                                <div className='bg-image section-outstanding-doctor'></div>
+                                                <div className='bg-image section-outstanding-doctor '
+                                                style={{backgroundImage:`url${imageBase64}`}}
+                                                ></div>
                                             </div>
                                             <div className='position text-center'>
-                                                <div>Phó Giáo sư,Tiến sĩ,Bác sĩ cao câp Draco Vuong </div>
+                                                <div>{language === LANGUAGES.VI ? nameVi : nameEn} </div>
                                                 <div>Da liễu</div>
                                             </div>
                                         </div>
@@ -61,7 +77,9 @@ class OutStandingDoctor extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        DoctorRedux: state.admin.TopDoctors
+        DoctorRedux: state.admin.TopDoctors,
+        lang: state.app.language,
+
     }
 }
 
