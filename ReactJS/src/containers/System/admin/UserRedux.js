@@ -61,7 +61,7 @@ class UserRedux extends Component {
       let arrGender = this.props.genderRedux
       this.setState({
         genderArr: arrGender,
-        Gender: arrGender && arrGender.length > 0 ? arrGender[0].key : ''
+        Gender: arrGender && arrGender.length > 0 ? arrGender[0].keyMap : ''
 
       })
     }
@@ -69,14 +69,14 @@ class UserRedux extends Component {
       let arrPosition = this.props.positionRedux
       this.setState({
         positionArr: arrPosition,
-        Position: arrPosition && arrPosition.length > 0 ? arrPosition[0].key : ''
+        Position: arrPosition && arrPosition.length > 0 ? arrPosition[0].keyMap : ''
       })
     }
     if (prevProps.roleRedux !== this.props.roleRedux) {
       let arrRole = this.props.roleRedux
       this.setState({
         roleArr: arrRole,
-        Role: arrRole && arrRole.length > 0 ? arrRole[0].key : ''
+        Role: arrRole && arrRole.length > 0 ? arrRole[0].keyMap : ''
       })
     }
     if (prevProps.ListUserRedux !== this.props.ListUserRedux) {
@@ -92,9 +92,9 @@ class UserRedux extends Component {
         Position: '',
         Role: '',
         avatar: '',
-        Gender: arrGender && arrGender.length > 0 ? arrGender[0].key : '',
-        Position: arrPosition && arrPosition.length > 0 ? arrPosition[0].key : '',
-        Role: arrRole && arrRole.length > 0 ? arrRole[0].key : '',
+        Gender: arrGender && arrGender.length > 0 ? arrGender[0].keyMap : '',
+        Position: arrPosition && arrPosition.length > 0 ? arrPosition[0].keyMap : '',
+        Role: arrRole && arrRole.length > 0 ? arrRole[0].keyMap : '',
         action: CRUD_ACTION.CREATE
 
 

@@ -1,12 +1,13 @@
 .slick-prev,
 .slick-next {
-    border: 1px solid black !important;
+    border: 1px solid rgb(120, 113, 113) !important;
     z-index: 1000;
     right: -13px !important;
     width: 44px !important;
     height: 48px !important;
     background: transparent !important;
-    color: transparent !important;
+    // color: transparent !important;
+    color: #959595 !important;
     outline: none;
     border: none;
     display: block;
@@ -15,6 +16,7 @@
     &:hover {
         background: #eee !important;
     }
+
 }
 
 .slick-prev:before,
@@ -22,6 +24,9 @@
     font-family: 'Font Awesome 5 Free' !important;
     color: brown !important;
 
+}
+.slick-disabled{
+    display: none !important;
 }
 
 .section-share {

@@ -43,6 +43,7 @@ class OutStandingDoctor extends Component {
                                 if(item.image){
                                  imageBase64 = new Buffer(item.image,"base64").toString("binary")
                                 }
+                                console.log("check image",imageBase64)
                              
 
                                 let nameVi = `${item.positionData.valueVi},${item.lastName} ${item.firstName}`
@@ -55,7 +56,7 @@ class OutStandingDoctor extends Component {
                                         <div className='customize-boder'>
                                             <div className='outer-bg'>
                                                 <div className='bg-image section-outstanding-doctor '
-                                                style={{backgroundImage:`url${imageBase64}`}}
+                                                style={{backgroundImage:`url(${imageBase64})`}}
                                                 ></div>
                                             </div>
                                             <div className='position text-center'>
