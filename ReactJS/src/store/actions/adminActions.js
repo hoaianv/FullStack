@@ -1,5 +1,5 @@
 import actionTypes from './actionTypes'
-import { getAllCodeService, CreateNewUserService, getAllUsers, DeleteUserService, EditUserService, getAllDoctorService } from '../../services/userService'
+import { getAllCodeService, CreateNewUserService, getAllUsers, DeleteUserService, EditUserService, getAllDoctorService ,getAllDoctorsDespriptions,CreateNewDoctorSer} from '../../services/userService'
 import { toast } from 'react-toastify'
 // export const FetchGenderStart = () => ({
 //   type: actionTypes.FETCH_GENDER_START,
@@ -242,3 +242,71 @@ export const FetchTopDocTorFailed = () => ({
 
 })
 
+export const FetchAllDocTorStart = () => {
+    return async (dispatch, getState) => {
+        try {
+            let res = await getAllDoctorsDespriptions()
+            console.log("check doctor", res)
+            if (res && res.errCode === 0) {
+
+                dispatch(FetchAllDocTorSucces({
+                    type: actionTypes.FETCH_ALL_DOCTOR_SUCCESS,
+                    data: res.data
+                }))
+            } else {
+                dispatch(FetchTopDocTorFailed({
+                    type: actionTypes.FETCH_ALL_DOCTOR_FAILED,
+
+                }))
+            }
+        } catch (error) {
+            console.log(error)
+            dispatch(FetchAllDocTorFailed())
+
+        }
+    }
+}
+
+export const FetchAllDocTorSucces = (data) => ({
+    type: actionTypes.FETCH_ALL_DOCTOR_SUCCESS,
+    data: data
+
+})
+
+export const FetchAllDocTorFailed = () => ({
+    type: actionTypes.FETCH_ALL_DOCTOR_FAILED,
+
+})
+
+
+export const CreateDoctorStart = (data) => {
+
+    return async (dispatch, getState) => {
+        try {
+            let res = await CreateNewDoctorSer(data)
+
+            if (res && res.errCode === 0) {
+                toast.success("Create a new doctor succes")
+                dispatch({
+                    type: actionTypes.CREATE_A_NEW_DOCTOR_SUCCESS,
+                })
+
+
+            } else {
+                toast.warn("WARING ! Failed")
+
+                dispatch({               
+                 type: actionTypes.CREATE_A_NEW_DOCTOR_FAILED,
+                })
+            }
+        } catch (e) {
+            toast.warn("WARING ! Failed")
+
+            dispatch({               
+                type: actionTypes.CREATE_A_NEW_DOCTOR_FAILED,
+               })
+               console.log(e)
+        }
+
+    }
+}

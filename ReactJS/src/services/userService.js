@@ -1,3 +1,4 @@
+import { createFormattedDateTimePartsComponent } from 'react-intl/src/components/createFormattedComponent'
 import axios from '../axios'
 
 const handleLoginAPI = (username, password) => {
@@ -25,6 +26,14 @@ const getAllCodeService = (inputType) =>{
 const getAllDoctorService = (inputLimit) => {
   return axios.get(`/api/top-doctor-home?limit=${inputLimit}`)
 }
+const getAllDoctorsDespriptions = () =>{
+  return axios.get("/api/get-all-doctors")
+}
+const CreateNewDoctorSer = (data) => {
+  return axios.post('/api/save-info-doctors', data)
+}
+
+
 export {
   handleLoginAPI,
   getAllUsers,
@@ -32,5 +41,7 @@ export {
   DeleteUserService,
   EditUserService,
   getAllCodeService,
-  getAllDoctorService
+  getAllDoctorService,
+  getAllDoctorsDespriptions,
+  CreateNewDoctorSer
 }
