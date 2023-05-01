@@ -6,7 +6,7 @@ module.exports = {
     //   patientId: DataTypes.INTEGER,
     //   date: DataTypes.DATE,
     //   timeType: DataTypes.STRING,
-    await queryInterface.createTable('MarkDown', {
+    await queryInterface.createTable('markdowns', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -20,35 +20,47 @@ module.exports = {
     //   specialtyId: DataTypes.INTEGER,
     //   clinicId: DataTypes.INTEGER
     contentHTML: {
+      allowNull: true,
+
         type: Sequelize.TEXT('long'),
       },
       contentMarkDown: {
+        allowNull: true,
+
         type: Sequelize.TEXT('long'),
       },
-      discription: {
+      description: {
+        allowNull: true,
+
         type: Sequelize.TEXT('long'),
       },
       doctorId: {
+        allowNull: true,
+
         type: Sequelize.INTEGER,
       },
       specialtyId: {
+        allowNull: true,
+
         type: Sequelize.INTEGER,
       },
       clinicId: {
+        allowNull: true,
+
         type: Sequelize.INTEGER,
       },
 
       createdAt: {
-        allowNull: false,
+          allowNull: true,
         type: Sequelize.DATE,
       },
       updatedAt: {
-        allowNull: false,
+        allowNull: true,
         type: Sequelize.DATE,
       },
     })
   },
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('MarkDown')
+    await queryInterface.dropTable('markdowns')
   },
 }
