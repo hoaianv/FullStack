@@ -92,19 +92,30 @@ let GetDetailDoctorByIdSer = (inputId) =>{
             }else{
                 let doctor = await db.User.findOne({
                     where: {
-                        id: inputId
+                        id: inputId,
+                        roleId:"R2"
+                        
                     },
                     attributes: {
-                        exclude: ['password','image']
+                        exclude: ['password']
                     },
                     include: [
                         { model: db.MarkDown },
-                    ],
-                    raw: true,
-                    nest: true
+                        { model: db.allcode, as: 'positionData', attributes: ['valueVn', 'valueVi'] },
 
+                    ],
+                    raw: false,
+                    nest: true
+                    
                      
-                })
+                }) 
+                if(doctor && doctor.image) {
+                    doctor.image = new Buffer(doctor.image,"base64").toString("binary")
+                }
+
+                if(!doctor) {
+                    doctor = {}
+                }
                 resolve({
                     errCode:0,
                     data:doctor

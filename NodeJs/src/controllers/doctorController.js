@@ -46,8 +46,8 @@ let PostInfoDoctor = async (req,res) =>{
 }
 let GetDetailDoctorById = async (req,res) => {
     try {
-        console.log("check req id", req.body.id)
-        let response = await doctorService.GetDetailDoctorByIdSer(req.body.id)
+        console.log("check req id", req.query.id)
+        let response = await doctorService.GetDetailDoctorByIdSer(req.query.id)
         return res.status(200).json(response)
     } catch (error) {
         console.log(error)
