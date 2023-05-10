@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import Slider from "react-slick";
 import * as actions from '../../store/actions'
 import {LANGUAGES} from '../../utils/constant'
+import { withRouter } from "react-router";
 
 class OutStandingDoctor extends Component {
     constructor(props) {
@@ -20,12 +21,17 @@ class OutStandingDoctor extends Component {
             })
         }
     }
+    HandleDetailDoctor = (doctor) => {
+        console.log("check doctor",doctor)
+        this.props.history.push(`/detail-doctors/${doctor.id}`)
+    }
     componentDidMount() {
         this.props.loadTopDoctor()
     }
     render() {
         let arrDoctors = this.state.arrDoctor
         let language = this.props.lang
+        console.log("check arrDoctors",arrDoctors)
 
          return (
             <div className='section-share section-outstanding-doctor '>
@@ -43,16 +49,14 @@ class OutStandingDoctor extends Component {
                                 if(item.image){
                                  imageBase64 = new Buffer(item.image,"base64").toString("binary")
                                 }
-                                console.log("check image",imageBase64)
                              
 
                                 let nameVi = `${item.positionData.valueVi},${item.lastName} ${item.firstName}`
                                 let nameEn = `${item.positionData.valueVn},${item.lastName} ${item.firstName}`
-                                 console.log("check name Vi",nameVi)
-                                 console.log("check name En",nameEn)
+                            
 
                                 return (
-                                    <div className='section-customize' key={index}>
+                                    <div className='section-customize' key={index} onClick={() => this.HandleDetailDoctor(item)}   >
                                         <div className='customize-boder'>
                                             <div className='outer-bg'>
                                                 <div className='bg-image section-outstanding-doctor '
@@ -92,4 +96,4 @@ const mapDispatchToProps = (dispatch) => {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(OutStandingDoctor)
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(OutStandingDoctor))

@@ -58,6 +58,7 @@ class HomeHeader extends Component {
             </div>
           </div>
         </div>
+        {this.props.isShowBanner === true &&
         <div className="home-header-banner">
           <div className="content-up">
             <div className="title1"><FormattedMessage id={"banner.healthcare-platform"} /> </div>
@@ -124,7 +125,7 @@ class HomeHeader extends Component {
               </div>
             </div>
           </div>
-        </div>
+          </div>}
       </React.Fragment>
     )
   }
