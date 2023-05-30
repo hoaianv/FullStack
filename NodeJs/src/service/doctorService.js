@@ -1,3 +1,4 @@
+import { raw } from 'body-parser'
 import db from '../models/index'
 
 let getTopDoctorHome = (limitInput) => {
@@ -52,23 +53,40 @@ let GetAllDoctor = () => {
 let PostSaveInfoDoctor = (inputData) => {
     return new Promise(async (resolve, reject) => {
         try {
-            if (!inputData.doctorId || !inputData.contentHTML || !inputData.contentMarkDown) {
-                console.log("check doctorId",inputData.doctorId )
-                console.log("check contentHTML",inputData.contentHTML )
-                console.log("check contentMarkDown",inputData.contentMarkDown )
-                console.log("check description",inputData.description )
+            if (!inputData.doctorId || !inputData.contentHTML || !inputData.contentMarkDown || !inputData.action) {
+                console.log("check actions", inputData)
 
                 resolve({
                     errCode: 1,
                     errMessage: "Missing parameter!!"
                 })
             } else {
-                await db.MarkDown.create({
-                    contentHTML: inputData.contentHTML,
-                    contentMarkDown: inputData.contentMarkDown,
-                    description: inputData.description,
-                    doctorId: inputData.doctorId
-                })
+
+                if (inputData.action === 'CREATE') {
+                    await db.MarkDown.create({
+                        contentHTML: inputData.contentHTML,
+                        contentMarkDown: inputData.contentMarkDown,
+                        description: inputData.description,
+                        doctorId: inputData.doctorId
+                    })
+                } else if (inputData.action === 'EDIT') {
+                    let DoctorMarkDown = await db.MarkDown.findOne({
+                        where: { doctorId: inputData.doctorId },
+                        raw: false
+                    })
+                    console.log("check DoctorMarkDown", DoctorMarkDown)
+                    if (DoctorMarkDown) {
+
+                        DoctorMarkDown.contentHTML = inputData.contentHTML,
+                            DoctorMarkDown.contentMarkDown = inputData.contentMarkDown,
+                            DoctorMarkDown.description = inputData.description,
+                            await DoctorMarkDown.save()
+                    }
+
+
+                }
+
+
                 resolve({
                     errCode: 0,
                     errMessage: "save dotor success"
@@ -80,21 +98,21 @@ let PostSaveInfoDoctor = (inputData) => {
 
     })
 }
-let GetDetailDoctorByIdSer = (inputId) =>{
-    return new Promise( async(resolve,reject)=>{
+let GetDetailDoctorByIdSer = (inputId) => {
+    return new Promise(async (resolve, reject) => {
         try {
-            console.log("check input id",inputId)
-            if(!inputId){
+            console.log("check input id", inputId)
+            if (!inputId) {
                 resolve({
                     errCode: 3,
                     errMessage: "Missing parameter id!!"
                 })
-            }else{
+            } else {
                 let doctor = await db.User.findOne({
                     where: {
                         id: inputId,
-                        roleId:"R2"
-                        
+                        roleId: "R2"
+
                     },
                     attributes: {
                         exclude: ['password']
@@ -106,19 +124,19 @@ let GetDetailDoctorByIdSer = (inputId) =>{
                     ],
                     raw: false,
                     nest: true
-                    
-                     
-                }) 
-                if(doctor && doctor.image) {
-                    doctor.image = new Buffer(doctor.image,"base64").toString("binary")
+
+
+                })
+                if (doctor && doctor.image) {
+                    doctor.image = new Buffer(doctor.image, "base64").toString("binary")
                 }
 
-                if(!doctor) {
+                if (!doctor) {
                     doctor = {}
                 }
                 resolve({
-                    errCode:0,
-                    data:doctor
+                    errCode: 0,
+                    data: doctor
                 })
 
             }
@@ -131,5 +149,5 @@ module.exports = {
     getTopDoctorHome: getTopDoctorHome,
     GetAllDoctor: GetAllDoctor,
     PostSaveInfoDoctor: PostSaveInfoDoctor,
-    GetDetailDoctorByIdSer:GetDetailDoctorByIdSer
+    GetDetailDoctorByIdSer: GetDetailDoctorByIdSer
 }
