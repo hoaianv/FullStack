@@ -9,7 +9,7 @@
         "fee": "Fee",
         "check-health": "General health check",
         "support": "Support",
-        "welcome":"Welcome, "
+        "welcome": "Welcome, "
     },
     "banner": {
         "healthcare-platform": "Healthcare platform",
@@ -24,25 +24,23 @@
         "medical-products": "Medical products",
         "business-health": "Business health"
     },
-   
-   
     "menu": {
-      
         "admin": {
-            "manage-user" :"Manage system",
-            "manage-doctor":"Manage doctor",
-            "manage-admin":"Manage admin",
-            "crud":"CRUD user",
-            "crud-redux":"CRUD redux",
-            "clinic":"Clinic",
-            "manage-clinic":"Manage ",
-            "specialty":"Specialty",
-            "manage-specialty":"Manage specialty",
-            "handbook":"Handbook",
-            "manage-handbook":"Manage handbook" 
-           }
-        
-
+            "manage-user": "Manage system",
+            "manage-doctor": "Manage doctor",
+            "manage-admin": "Manage admin",
+            "crud": "CRUD user",
+            "crud-redux": "CRUD redux",
+            "clinic": "Clinic",
+            "manage-clinic": "Manage ",
+            "specialty": "Specialty",
+            "manage-specialty": "Manage specialty",
+            "handbook": "Handbook",
+            "manage-handbook": "Manage handbook"
+        },
+        "doctor": {
+            "manage-schedule": "Manage Doctor's schedule"
+        }
     },
     "manage-user": {
         "add-new-user": "Add new user",
@@ -55,7 +53,7 @@
         "gender": "Gender",
         "position": "Positon",
         "role": "Role",
-        "image":"Avatar",
+        "image": "Avatar",
         "save": "SAVE",
         "edit": "SAVE VALUE CHANGES"
     }

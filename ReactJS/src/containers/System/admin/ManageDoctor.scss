@@ -16,9 +16,18 @@
         background-color: aquamarine;
         cursor: pointer;
     }
+    button.create-content-doctor {
+      margin: 25px 0;
+      border: none;
+      outline: none;
+      padding: 7px;
+      border-radius: 5px;
+      background-color: rgb(86, 193, 37);
+      cursor: pointer;
+  }
     .more-info{
       display: flex;
-      gap: 15px;
+      gap: 15px;  
       margin-bottom: 10px;
       .content-left{
         width: 40%;

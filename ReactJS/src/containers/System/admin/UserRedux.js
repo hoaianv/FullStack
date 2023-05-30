@@ -3,7 +3,7 @@ import FsLightbox from "fslightbox-react";
 import { toast } from 'react-toastify'
 import { FormattedMessage } from 'react-intl'
 import { connect } from 'react-redux'
-import {CommonUtils} from '../../../utils'
+import { CommonUtils } from '../../../utils'
 import { LANGUAGES, CRUD_ACTION } from '../../../utils/constant'
 import * as actions from '../../../store/actions'
 import TableManageUser from './TableManageUser';
@@ -91,7 +91,7 @@ class UserRedux extends Component {
         Gender: '',
         Position: '',
         Role: '',
-        avatar: '',
+        previewImgURL: '',
         Gender: arrGender && arrGender.length > 0 ? arrGender[0].keyMap : '',
         Position: arrPosition && arrPosition.length > 0 ? arrPosition[0].keyMap : '',
         Role: arrRole && arrRole.length > 0 ? arrRole[0].keyMap : '',
@@ -210,7 +210,7 @@ class UserRedux extends Component {
         positionId: this.state.Position,
         avatar: this.state.avatar
       })
-      console.log("check state avatar",this.state)
+      console.log("check state avatar", this.state)
     }
     if (this.state.action === CRUD_ACTION.EDIT) {
       this.props.editUser({
@@ -233,10 +233,10 @@ class UserRedux extends Component {
   }
   HandleEditUserParent = (user) => {
     console.log("check edit user parent", user)
-   let imageBase64 = ''
-   if(user.image){
-    imageBase64 = new Buffer(user.image,"base64").toString("binary")
-   }
+    let imageBase64 = ''
+    if (user.image) {
+      imageBase64 = new Buffer(user.image, "base64").toString("binary")
+    }
 
 
     this.setState({
@@ -251,7 +251,7 @@ class UserRedux extends Component {
       // Position: '',
       // Role: '',
       avatar: '',
-      previewImgURL:imageBase64,
+      previewImgURL: imageBase64,
       Gender: user.gender,
       Position: user.positionId,
       Role: user.roleId,

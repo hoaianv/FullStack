@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import HomeHeader from '../../HomePage/HomeHeader'
 import './DetailDoctor.scss' 
 import {GetDetailInforDoctor} from '../../../services/userService'
-
+import { LANGUAGES } from '../../../utils/constant'
 class DetailDoctor extends Component {
     constructor(props) {
         super(props)
@@ -28,10 +28,17 @@ class DetailDoctor extends Component {
 }
     render() {
             let{InforDoctor} = this.state
+            let language = this.props.lang
+
             let nameVi='' , nameEn =''
-             nameVi = `${item.positionData.valueVi},${item.lastName} ${item.firstName}`
-             nameEn = `${item.positionData.valueVn},${item.lastName} ${item.firstName}`
             console.log("check infor doctor",InforDoctor)
+            if(InforDoctor && InforDoctor.positionData){
+                nameVi = `${InforDoctor.positionData.valueVi},${InforDoctor.lastName} ${InforDoctor.firstName}`
+                nameEn = `${InforDoctor.positionData.valueVn},${InforDoctor.firstName} ${InforDoctor.lastName}`
+            }
+                 
+
+    
           return (
             <>
                 <div>
@@ -46,7 +53,7 @@ class DetailDoctor extends Component {
                          </div>
                          <div className='content-right'>
                             <div className='up' >
-                                Tien si Vuong Hoai An
+                                {language === LANGUAGES.VI ? nameVi : nameEn}
                             </div>
                             <div className='down'>
                                 {
@@ -60,6 +67,10 @@ class DetailDoctor extends Component {
 
                    </div>
                    <div className='detail-infor-doctors'>
+                    { InforDoctor && InforDoctor.MarkDown && InforDoctor.MarkDown.contentHTML&&
+                    
+              <div dangerouslySetInnerHTML={{__html: InforDoctor.MarkDown.contentHTML}}></div>
+                    }
 
                    </div>
                    <div className='comment-doctor'>
@@ -74,7 +85,10 @@ class DetailDoctor extends Component {
 }
 
 const mapStateToProps = (state) => {
-    return {}
+    return {
+        lang: state.app.language,
+
+    }
 }
 
 const mapDispatchToProps = (dispatch) => {

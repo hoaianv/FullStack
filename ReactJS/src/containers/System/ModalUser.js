@@ -5,7 +5,6 @@ import '../System/UserManage.scss'
 import { emitter } from '../../utils/emitter'
 
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap'
-import { values } from 'lodash'
 
 class ProductManage extends Component {
   constructor(props) {
@@ -31,7 +30,7 @@ class ProductManage extends Component {
       })
     })
   }
-  componentDidMount() {}
+  componentDidMount() { }
   HandleOnChangeInput = (event, id) => {
     let CopyState = { ...this.state }
     CopyState[id] = event.target.value
